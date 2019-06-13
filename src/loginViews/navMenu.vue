@@ -37,9 +37,7 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    console.log(this.navMenus);
-  },
+  mounted() {},
   methods: {}
 };
 </script>

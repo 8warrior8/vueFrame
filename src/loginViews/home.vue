@@ -1,29 +1,12 @@
 <template>
   <el-container style="height: 100%;">
     <el-header height="50px">
-      <div>
-        <img :src="sysImage" style="height:40px">
-        <button v-on:click="btnOpenClick(isCollapse)">{{openOrCloseName}}</button>
-        <span>暂时没有使用的区域</span>
-        <img :src="this.$store.getters['userInfo/getUserImageRul']" style="height:40px; width:40px">
-        <span>{{this.$store.getters['userInfo/getUserName']}}</span>
-        <button v-on:click="btnLogOutClick">注销</button>
-      </div>
+      <navHead></navHead>
     </el-header>
 
     <el-container style="heigth:100%;">
       <el-aside>
-        <el-menu
-          :default-active="this.$route.name"
-          router
-          unique-opened
-          class="el-menu-vertical-demo"
-          text-color="#3C3F41"
-          active-text-color="black"
-        >
-          <!--加上router 才能实现跳转-->
-          <navMenu :navMenus="this.$store.getters['userInfo/getMenuList']"></navMenu>
-        </el-menu>
+        <navMenuRoot></navMenuRoot>
       </el-aside>
       <el-main style="width: 100%;height: 100%;">
         <transition name="slide-right">
@@ -32,57 +15,31 @@
       </el-main>
     </el-container>
 
-    <el-footer height="20px" style="background-color: #B3C0D1">底部区域</el-footer>
+    <el-footer height="20px" style="background-color: #B3C0D1">
+      <navFooter></navFooter>
+    </el-footer>
   </el-container>
 </template>
 
 <script>
-//import { mapGetters } from "vuex"; //map简化写法
-import { requestLoginOut } from "../service/userLoginAjax";
-import NavMenu from "./navMenu.vue";
+import NavHead from "./navHead.vue";
+import NavMenuRoot from "./navMenuRoot.vue";
+import NavFooter from "./navFooter.vue";
 export default {
   data() {
-    return {
-      menuList: [],
-      sysImage: "", // 系统首页图片
-      isCollapse: false,
-      openOrCloseName: "展开"
-    };
+    return {};
   },
   name: "Main-view",
   components: {
-    navMenu: NavMenu
+    navMenuRoot: NavMenuRoot,
+    navHead: NavHead,
+    navFooter: NavFooter
   },
-  created: function() {
-    this.sysImage =
-      "../static/system/" + this.$environmentCfg.configs.sysImgUrl;
-  },
-  methods: {
-    //注销系统
-    btnLogOutClick: function() {
-      var self = this;
-      var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
-      this.$store.dispatch("userInfo/logOut", params).then(res => {
-        location.reload(); //重新刷新页面，清除路由等数据信息
-      });
-    },
-    //展开或者收缩
-    btnOpenClick: function(isOpen) {
-      if (isOpen === false) {
-        this.openOrCloseName = "展开";
-      } else {
-        this.openOrCloseName = "收缩";
-      }
-      this.isCollapse = !isOpen;
-    }
-  },
+  created: function() {},
+  methods: {},
   watch: {},
-  computed: {
-    //...mapGetters(["getMenuList", "getUserName", "getUserImageRul"])
-  },
-  mounted() {
-    var j = 0;
-  }
+  computed: {},
+  mounted() {}
 };
 </script>
 
