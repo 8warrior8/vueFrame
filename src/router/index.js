@@ -22,7 +22,7 @@ export default new Router({
     }],
 
   getRoutesByDynamics: function (_self, params, callback) {
-    _self.$store.dispatch("loginUserInfo", params).then(res => {
+    _self.$store.dispatch("userInfo/loginUserInfo", params).then(res => {
       var tempUenuList = [];
       var tempRouterRoot = this.gerRouterInfoByRoot();
       this.getHomeMenuOrRouterList(res, tempUenuList, tempRouterRoot.children);
@@ -39,8 +39,8 @@ export default new Router({
         isChildViews: false,
         childViews: null
       });
-      _self.$store.commit("setMenuList", tempUenuList);
-      _self.$store.commit("setUserRouterMain", [tempRouterRoot]);
+      _self.$store.commit("userInfo/setMenuList", tempUenuList);
+      _self.$store.commit("userInfo/setUserRouterMain", [tempRouterRoot]);
       _self.$router.addRoutes([tempRouterRoot]);
       if (callback) {
         callback();

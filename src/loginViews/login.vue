@@ -38,7 +38,7 @@ export default {
         var tempUserName = this.passWordEncryption(this.userName);
         var tempPassWord = this.passWordEncryption(this.userPassWord);
         var params = { username: tempUserName, password: tempPassWord };
-        this.$store.dispatch("login", params).then(res => {
+        this.$store.dispatch("userInfo/login", params).then(res => {
           localStorage.setItem("currUserName", res.userName);
           localStorage.setItem("currUserTokenKey", res.tokenKey);
           var params = { tokenKey: res.tokenKey };

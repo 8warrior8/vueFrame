@@ -48,6 +48,4 @@ export default {
 .el-submenu .el-submenu__title {
   text-align: left !important;
 }
-.el-submenu .item_title {
-}
 </style>

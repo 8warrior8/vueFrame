@@ -80,7 +80,7 @@ Axios.interceptors.response.use(
       //     message: "用户未登录，请退出重新登录！"
       // })
       var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
-      store.dispatch('logOut', params).then((data) => {
+      store.dispatch('userInfo/logOut', params).then((data) => {
         router.replace({ path: '/login' });
       })
     }

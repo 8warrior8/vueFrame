@@ -1,6 +1,6 @@
 import { requestLogin, requestLoginOut, requestUserInfo } from '../../service/userLoginAjax'
 const userInfo = {
-	//namespaced: true,
+	namespaced: true,
 	state: {
 		userName: '',
 		userTel: '',

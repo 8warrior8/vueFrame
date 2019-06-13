@@ -5,8 +5,8 @@
         <img :src="sysImage" style="height:40px">
         <button v-on:click="btnOpenClick(isCollapse)">{{openOrCloseName}}</button>
         <span>暂时没有使用的区域</span>
-        <img :src="this.$store.getters.getUserImageRul" style="height:40px; width:40px">
-        <span>{{this.$store.getters.getUserName}}</span>
+        <img :src="this.$store.getters['userInfo/getUserImageRul']" style="height:40px; width:40px">
+        <span>{{this.$store.getters['userInfo/getUserName']}}</span>
         <button v-on:click="btnLogOutClick">注销</button>
       </div>
     </el-header>
@@ -22,7 +22,7 @@
           active-text-color="black"
         >
           <!--加上router 才能实现跳转-->
-          <navMenu :navMenus="this.$store.getters.getMenuList"></navMenu>
+          <navMenu :navMenus="this.$store.getters['userInfo/getMenuList']"></navMenu>
         </el-menu>
       </el-aside>
       <el-main style="width: 100%;height: 100%;">
@@ -62,7 +62,7 @@ export default {
     btnLogOutClick: function() {
       var self = this;
       var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
-      this.$store.dispatch("logOut", params).then(res => {
+      this.$store.dispatch("userInfo/logOut", params).then(res => {
         location.reload(); //重新刷新页面，清除路由等数据信息
       });
     },
