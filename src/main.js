@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import Environment from './configs/environment.js'  //系统环境变量设置
 import Axios from 'axios'
-import AjaxInterceptors from './common/ajaxInterceptors.js'    // 拦截器
 import store from './store'  //vuex中使用store
 import ElementUI from 'element-ui';         //引入element-ui组件库
 import 'element-ui/lib/theme-chalk/index.css'; //引入element-ui组件库
@@ -19,8 +18,12 @@ Vue.prototype.$environmentCfg = Environment  //加载系统环境变量相关数
 Vue.prototype.$axios = Axios    //引入axios相关处理能力
 Vue.use(ElementUI);
 
-// 校验是否登陆  只要路由跳转，刷新   进行加载
+//路由守护，确保有效路由可以执行
 router.beforeEach((to, from, next) => {
+  axiosPromiseArr.forEach((ele, index) => {
+    ele.cancel();
+    delete axiosPromiseArr[index];
+  });
   var userName = localStorage.getItem("currUserName");
   var isLogin = false;
   if (userName) {
@@ -43,6 +46,60 @@ router.beforeEach((to, from, next) => {
     }
   }
 });
+
+//Axios请求拦截器相关处理
+var axiosPromiseArr = []; //储存cancel token// 添加请求拦截器，在请求头中加token
+Axios.interceptors.request.use(
+  config => {
+    let tokenKey = "";
+    if (config.url != "/logIn") {
+      tokenKey = localStorage.getItem('currUserTokenKey');;  //需要通过localStorage中获取服务端Key
+    }
+    config.baseURL = '/api/'
+    config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
+    config.timeout = 2500
+    config.headers = {
+      'access-token': tokenKey,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    config.cancelToken = new Axios.CancelToken(cancel => {
+      axiosPromiseArr.push({ cancel })
+    })
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+);
+
+Axios.interceptors.response.use(
+  response => {
+    // response.status 服务端返回成功，否则为失败
+    if (response.status != 200 || (response.data && response.data.code && response.data.code != 200)) {
+      // Message.error({
+      //     message: "用户未登录，请退出重新登录！"
+      // })
+      var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
+      store.dispatch('logOut', params).then((data) => {
+        router.replace({ path: '/login' });
+      })
+    }
+    return response.data
+  },
+  error => {
+    return Promise.reject(error)
+    if (axios.isCancel(error)) {
+      console.log('请求取消')
+    } else {
+      router.replace({
+        path: '404',
+        query: { message: error }
+      });
+    }
+  }
+);
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -59,7 +116,7 @@ new Vue({
       this.$router.replace({ path: '/login' });
     } else {
       var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
-      this.$router.options.getRoutesByDynamics(this, params);
+      this.$router.options.getRoutesByDynamics(this, params, null);
     }
   },
 

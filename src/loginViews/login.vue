@@ -26,6 +26,9 @@ export default {
     localStorage.setItem("currUserName", "");
     localStorage.setItem("currUserTokenKey", "");
   },
+
+  beforeDestroy: function() {},
+
   methods: {
     //登录按钮处理逻辑
     btnLoginClick: function() {
@@ -38,7 +41,10 @@ export default {
         this.$store.dispatch("login", params).then(res => {
           localStorage.setItem("currUserName", res.userName);
           localStorage.setItem("currUserTokenKey", res.tokenKey);
-          this.$router.replace({ path: "home" });
+          var params = { tokenKey: res.tokenKey };
+          self.$router.options.getRoutesByDynamics(self, params, function() {
+            self.$router.replace({ path: "home-view" });
+          });
         });
       }
     },

@@ -19,16 +19,9 @@ export default new Router({
       meta: {
         requireAuth: false
       },
-    }, {
-      path: '/home',
-      name: 'home-view',
-      component: HomeView,
-      meta: {
-        requireAuth: false
-      }
     }],
 
-  getRoutesByDynamics: function (_self, params) {
+  getRoutesByDynamics: function (_self, params, callback) {
     _self.$store.dispatch("loginUserInfo", params).then(res => {
       var tempUenuList = [];
       var tempRouterRoot = this.gerRouterInfoByRoot();
@@ -49,13 +42,16 @@ export default new Router({
       _self.$store.commit("setMenuList", tempUenuList);
       _self.$store.commit("setUserRouterMain", [tempRouterRoot]);
       _self.$router.addRoutes([tempRouterRoot]);
+      if (callback) {
+        callback();
+      }
     });
   },
 
   //获取主功能页面路由信息
   gerRouterInfoByRoot: function () {
     var tempRoot = {
-      path: "/",
+      path: "/home-view",
       name: "home-view",
       component: () => import("@/loginViews/home.vue"),
       meta: {

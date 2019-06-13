@@ -63,7 +63,7 @@ export default {
       var self = this;
       var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
       this.$store.dispatch("logOut", params).then(res => {
-        self.$router.replace({ path: "/login" });
+        location.reload(); //重新刷新页面，清除路由等数据信息
       });
     },
     //展开或者收缩
@@ -81,14 +81,7 @@ export default {
     //...mapGetters(["getMenuList", "getUserName", "getUserImageRul"])
   },
   mounted() {
-    var self = this;
-    let username = localStorage.getItem("currUserName");
-    if (username) {
-      var params = { tokenKey: localStorage.getItem("currUserTokenKey") };
-      self.$router.options.getRoutesByDynamics(self, params);
-    } else {
-      window.location.href = "/login";
-    }
+    var j = 0;
   }
 };
 </script>
