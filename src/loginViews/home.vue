@@ -15,7 +15,7 @@
       </el-main>
     </el-container>
 
-    <el-footer height="20px" style="background-color: #B3C0D1">
+    <el-footer height="40px">
       <navFooter></navFooter>
     </el-footer>
   </el-container>
@@ -70,30 +70,51 @@ export default {
 
 
 <style>
-.menu-collapsed {
-  flex: 0 0 60px;
-  width: 60px;
-}
-.menu-expanded {
-  flex: 0 0 230px;
-  width: 230px;
-}
-
-.my-link {
-  display: flex;
-}
-.my-link h3 {
-  padding: 0px 10px;
-  cursor: pointer;
-}
-.my-link h3:hover {
-  color: red;
-}
-.link-active {
-  color: yellow;
-  background: #2c3e50;
-}
-.router-link-active {
-  color: red;
-}
+  .el-header{
+    display: flex;
+    align-items: center;
+  }
+  .el-header>div{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .el-header>div>div{
+    display: flex;
+    align-items: center;
+  }
+  .el-header>div>div:nth-of-type(1)>i{
+    margin-left:125px;
+  }
+  .el-header>div>div>i:hover{
+    opacity:.5;
+    cursor:pointer;
+  }
+  .el-header>div>div:nth-of-type(2){
+    width:180px;
+    justify-content: space-around;
+  }
+  .el-container{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .el-menu{
+    border:none;
+  }
+  .el-menu--collapse{
+    width:50px;
+  }
+  .el-aside{
+    border-right: 1px solid #ccc;
+  }
+  .el-footer{
+    background: #B3C0D1;
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 </style>

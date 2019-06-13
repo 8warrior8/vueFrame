@@ -1,5 +1,5 @@
 <template>
-  <div>底部区域</div>
+  <div>版权所有 亿阳信通安全技术有限公司</div>
 </template>
 
 <script>

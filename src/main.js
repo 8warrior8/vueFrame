@@ -9,7 +9,6 @@ import store from './store'  //vuex中使用store
 import ElementUI from 'element-ui';         //引入element-ui组件库
 import 'element-ui/lib/theme-chalk/index.css'; //引入element-ui组件库
 
-
 import Mock from './mock'  //引入mock数据，关闭则注释该行
 Mock.bootstrap()    //引入mock数据，关闭则注释该行
 
