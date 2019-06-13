@@ -5,6 +5,7 @@
     <span>暂时没有使用的区域</span>
     <img :src="this.$store.getters['userInfo/getUserImageRul']" style="height:40px; width:40px">
     <span>{{this.$store.getters['userInfo/getUserName']}}</span>
+    <span>换肤按钮 this.$environmentCfg.configs.themes</span>
     <button v-on:click="btnLogOutClick">注销</button>
   </div>
 </template>
@@ -44,6 +45,7 @@ export default {
         this.openOrCloseName = "收缩";
       }
       this.isCollapse = !isOpen;
+      this.$emit('btnMenuChange', this.isCollapse);
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <el-menu
+  <el-menu :collapse="isMenuOpen"
     :default-active="this.$route.name"
     router
     unique-opened
@@ -16,12 +16,18 @@ import NavMenu from "./navMenu.vue";
 export default {
   name: "NavMenuRoot",
   data() {
-    return {};
+    return {
+      isMenuOpen: false,
+    };
   },
   components: {
     navMenu: NavMenu
   },
-  methods: {}
+  methods: {
+    setMenuCollapseStatus:function(isOpen){
+      this.isMenuOpen = isOpen;
+    },
+  }
 };
 </script>
 

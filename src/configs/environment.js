@@ -1,8 +1,8 @@
 "use strict";
 export default {
     configs: {
-        theme: "light",  //框架主题
-        themes: ['default', 'zhanshi', 'cuzhanshi', 'guodian', 'blue', 'gxgd', 'nfv', 'tnmsalgeria', 'wlw'],
+        theme: "zhanshi",  //框架主题
+        themes: ['default', 'zhanshi'],
         productId: "ecss",// 产品名称
         language: "zh",
         sysImgUrl: "sys_log.png",
