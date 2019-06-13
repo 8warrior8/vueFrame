@@ -24,21 +24,9 @@ export default new Router({
   getRoutesByDynamics: function (_self, params, callback) {
     _self.$store.dispatch("userInfo/loginUserInfo", params).then(res => {
       var tempUenuList = [];
-      var tempRouterRoot = this.gerRouterInfoByRoot();
+      var tempRouterRoot = this.getRouterInfoByRoot();
       this.getHomeMenuOrRouterList(res, tempUenuList, tempRouterRoot.children);
-      tempUenuList.push({
-        id: 999,
-        menuName: "关于",
-        value: "/about",
-        templateName: "about-view",
-        url: "loginViews/about.vue",
-        visible: true,
-        imgSrc: "el-icon-share",
-        imgClickSrc: "",
-        operationId: "",
-        isChildViews: false,
-        childViews: null
-      });
+      this.setOtherRouterInfo(tempUenuList);
       _self.$store.commit("userInfo/setMenuList", tempUenuList);
       _self.$store.commit("userInfo/setUserRouterMain", [tempRouterRoot]);
       _self.$router.addRoutes([tempRouterRoot]);
@@ -48,8 +36,25 @@ export default new Router({
     });
   },
 
+  //添加系统其他路由信息
+  setOtherRouterInfo: function (list) {
+    list.push({
+      id: 999,
+      menuName: "关于",
+      value: "/about",
+      templateName: "about-view",
+      url: "loginViews/about.vue",
+      visible: true,
+      imgSrc: "el-icon-share",
+      imgClickSrc: "",
+      operationId: "",
+      isChildViews: false,
+      childViews: null
+    });
+  },
+
   //获取主功能页面路由信息
-  gerRouterInfoByRoot: function () {
+  getRouterInfoByRoot: function () {
     var tempRoot = {
       path: "/home-view",
       name: "home-view",
@@ -84,7 +89,7 @@ export default new Router({
     var self = this;
     var menuJson = require("../configs/systemMenus.json");
     menuJson.forEach(function (item, index) {
-      if (item.visible === true && res.userMemuList.includes(Number(item.operationId))) {
+      if (item.visible === true && (!item.operationId || (item.operationId && res.userMemuList.includes(Number(item.operationId))))) {
         //获取路由信息集合
         self.getRouterChilds(item, routerList);
         //获取菜单数据集合
@@ -106,7 +111,7 @@ export default new Router({
     var self = this;
     if (jsonList.length > 0) {
       jsonList.forEach(function (item, index) {
-        if (item.visible === true && currIdList.includes(Number(item.operationId))) {
+        if (item.visible === true && (!item.operationId || (item.operationId && currIdList.includes(Number(item.operationId))))) {
           //获取路由信息集合
           self.getRouterChilds(item, routerList);
           //获取菜单数据集合

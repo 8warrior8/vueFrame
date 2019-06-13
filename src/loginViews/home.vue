@@ -48,7 +48,23 @@ export default {
   },
   watch: {},
   computed: {},
-  mounted() {}
+  mounted() {
+    var self = this;
+    window.onresize = function() {
+      let tempWidth = 0;
+      let tempHeight = 0;
+      if (document.documentElement.clientWidth) {
+        tempWidth = Number(document.documentElement.clientWidth);
+      }
+      if (document.documentElement.clientHeight) {
+        tempHeight = Number(document.documentElement.clientHeight);
+      }
+      self.$store.commit("systemChange/setPageSizeChange", {
+        width: tempWidth,
+        height: tempHeight
+      });
+    };
+  }
 };
 </script>
 
