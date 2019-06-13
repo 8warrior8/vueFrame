@@ -1,0 +1,65 @@
+[
+    {
+        "menuName": "张国印",
+        "templateName": "hello-world",
+        "url": "components/ZhangTest1.vue",
+        "visible": true,
+        "imgSrc": "el-icon-share",
+        "imgClickSrc": "",
+        "operationId": "100001",
+        "childViews": [
+            {
+                "menuName": "HelloWorld",
+                "templateName": "hello-world1",
+                "url": "components/HelloWorld.vue",
+                "visible": true,
+                "imgSrc": "el-icon-share",
+                "imgClickSrc": "",
+                "operationId": "100001001"
+            },
+            {
+                "menuName": "张国印测试",
+                "templateName": "hello-world2",
+                "url": "components/HelloWorld.vue",
+                "visible": true,
+                "imgSrc": "el-icon-share",
+                "imgClickSrc": "",
+                "operationId": "100001002",
+                "childViews": [
+                    {
+                        "menuName": "ZhangTest1",
+                        "templateName": "zhang-test1",
+                        "url": "components/ZhangTest1.vue",
+                        "visible": true,
+                        "imgSrc": "el-icon-share",
+                        "imgClickSrc": "",
+                        "operationId": "100001002001",
+                        "parameters": {
+                            "windowType": "custom",
+                            "defaultFilterId": "1",
+                            "defaultTemplateId": "1",
+                            "defaultStatusTemplateId": "1",
+                            "isShowLayoutButtton": true
+                        }
+                    },
+                    {
+                        "menuName": "ZhangTest2",
+                        "templateName": "zhang-test2",
+                        "url": "components/ZhangTest1.vue",
+                        "visible": true,
+                        "imgSrc": "el-icon-share",
+                        "imgClickSrc": "",
+                        "operationId": "100001002002",
+                        "parameters": {
+                            "windowType": "custom",
+                            "defaultFilterId": "2",
+                            "defaultTemplateId": "2",
+                            "defaultStatusTemplateId": "2",
+                            "isShowLayoutButtton": true
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

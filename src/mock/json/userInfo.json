@@ -1,0 +1,27 @@
+{
+    "loginUser": {
+        "result": "success",
+        "userName": "张国印",
+        "tokenKey": "zhangguoyin-token-key"
+    },
+    "userInfo": {
+        "result": "success",
+        "userName": "张国印",
+        "userTel": "123456789",
+        "userImgUrl": "user1.png",
+        "userMemuList": [
+            100001,
+            100001001,
+            100001002,
+            100001002001,
+            100001002002,
+            100002,
+            100002001,
+            100002002,
+            100002002001,
+            100002002002
+        ],
+        "operList": [],
+        "msg": ""
+    }
+}
