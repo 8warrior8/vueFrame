@@ -1,17 +1,17 @@
 [
     {
         "menuName": "张国印",
-        "templateName": "hello-world",
-        "url": "components/ZhangTest1.vue",
+        "templateName": "HelloWorld",
+        "url": "",
         "visible": true,
         "imgSrc": "el-icon-share",
         "imgClickSrc": "",
         "operationId": "100001",
         "childViews": [
             {
-                "menuName": "张国印测试",
-                "templateName": "hello-world2",
-                "url": "components/HelloWorld.vue",
+                "menuName": "张国印学习",
+                "templateName": "ZhangTest1",
+                "url": "",
                 "visible": true,
                 "imgSrc": "el-icon-share",
                 "imgClickSrc": "",
