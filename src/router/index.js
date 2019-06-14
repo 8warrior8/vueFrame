@@ -148,15 +148,17 @@ export default new Router({
 
   getRouterChilds: function (item, routerList) {
     var self = this;
-    var routerModel = self.getRouterInfo(item);
-    var isCheckItem = routerList.find(function (routeItem) {
-      if (routeItem.path === routerModel.path) {
-        return routeItem;
+    if (item.url && item.url.length > 0) {
+      var routerModel = self.getRouterInfo(item);
+      var isCheckItem = routerList.find(function (routeItem) {
+        if (routeItem.path === routerModel.path) {
+          return routeItem;
+        }
+        return null;
+      });
+      if (!isCheckItem) {
+        routerList.push(routerModel);
       }
-      return null;
-    });
-    if (!isCheckItem) {
-      routerList.push(routerModel);
     }
   },
 
