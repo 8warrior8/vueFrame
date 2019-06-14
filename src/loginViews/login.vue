@@ -1,23 +1,36 @@
 <template>
-  <div>
-    <span>用户名称：</span>
-    <input type="text" v-model="userName" placeholder="输入用户名称">
-    <br>
-    <span>用户密码：</span>
-    <input type="text" v-model="userPassWord" placeholder="输入用户密码">
-    <br>
-    <button v-on:click="btnLoginClick">登录</button>
-    <button v-on:click="btnCancelClick">取消</button>
+  <div class="login-view">
+    <div>
+      <div>
+        <span>用户名称：</span>
+        <input type="text" v-model="userName" placeholder="输入用户名称">
+      </div>
+      <div>
+        <span>用户密码：</span>
+        <input type="text" v-model="userPassWord" placeholder="输入用户密码">
+      </div>
+      <div class="container">
+        <div id="captcha" style="position: relative" data-type="password"></div>
+        <div id="msg"></div>
+      </div>
+     <div>
+       <el-button type="primary" v-on:click="btnLoginClick">登录</el-button>
+       <el-button type="success" v-on:click="btnCancelClick">取消</el-button>
+     </div>
+    </div>
   </div>
 </template>
 
 
 <script>
+  import '../common/jigsaw.js'
+  import '../common/jigsaw.css'
 export default {
   data() {
     return {
       userName: "zhangguoyin",
-      userPassWord: "111111"
+      userPassWord: "111111",
+      flag:false
     };
   },
   name: "login-view",
@@ -34,7 +47,7 @@ export default {
     btnLoginClick: function() {
       var self = this;
       var strErr = this.isCheckInput();
-      if (!strErr) {
+      if (strErr) {
         var tempUserName = this.passWordEncryption(this.userName);
         var tempPassWord = this.passWordEncryption(this.userPassWord);
         var params = { username: tempUserName, password: tempPassWord };
@@ -58,7 +71,12 @@ export default {
     },
 
     isCheckInput: function() {
-      return null;
+      if(this.flag==true){
+        return true;
+      }else{
+        alert("验证失败!")
+        return false;
+      }
     },
 
     //密码加密处理，返回密文
@@ -68,9 +86,50 @@ export default {
   },
   watch: {},
   computed: {},
-  mounted() {}
+  mounted() {
+    let self=this;
+    jigsaw.init(document.getElementById('captcha'), function () {
+      self.flag=true;
+      document.getElementById('msg').innerHTML = '登录成功！'
+    })
+  }
 };
 </script>
 
-<style>
+<style scoped>
+  .login-view{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-view>div>div>span{
+    font-weight:bold;
+    font-size:14px;
+    color:#aaa;
+  }
+  .login-view>div>div input{
+    width: 260px;
+    height:30px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    padding:0 5px;
+  }
+  .login-view>div>div{
+    margin:20px;
+    text-align: center;
+  }
+  .login-view>div{
+    padding:20px 10px 5px 10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    background: rgba(40,57,101,.9);
+  }
+  #msg{
+    color:#fff;
+  }
+  .container{
+    height:132px;
+  }
 </style>

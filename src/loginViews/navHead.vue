@@ -10,23 +10,21 @@
       <img :src="this.$store.getters['userInfo/getUserImageRul']" style="height:24px; width:24px">
       <span>{{this.$store.getters['userInfo/getUserName']}}</span>
       <i class="el-icon-switch-button" @click="btnLogOutClick"></i>
-      <el-dropdown>
+      <el-dropdown trigger="click"  @command="changeColor">
         <span class="el-dropdown-link">
           换肤
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item icon="el-icon-circle-check-outline" @click="changColor(light)">浅色版</el-dropdown-item>
-          <el-dropdown-item icon="el-icon-circle-check-outline" @click="changColor(dark)">深色版</el-dropdown-item>
+          <el-dropdown-item command="default">浅色版</el-dropdown-item>
+          <el-dropdown-item command="zhanshi">深色版</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
   </div>
 </template>
-
 <script>
 //import { mapGetters } from "vuex"; //map简化写法
 import { requestLoginOut } from "../service/userLoginAjax";
-
 export default {
   name: "NavHead",
   data() {
@@ -39,8 +37,8 @@ export default {
   components: {},
 
   mounted() {
-    this.sysImage =
-      "../static/system/" + this.$environmentCfg.configs.sysImgUrl;
+    this.sysImage = "../static/system/" + this.$environmentCfg.configs.sysImgUrl;
+    this.changeColor(this.$environmentCfg.configs.theme)
   },
   methods: {
     //注销系统
@@ -61,11 +59,18 @@ export default {
       this.isCollapse = !isOpen;
       this.$emit('btnMenuChange', this.isCollapse);
     },
-    changColor:function(theme){
-      require('../styles/global.styl');
-      debugger;
-      //this.$store.commit("systemChange/setStyleChange",theme);
-      //this.$environmentCfg.configs.themes
+    changeColor:function(theme){
+      if(theme==='default'){
+        //requirejs.undef('../styles/global_zhanshi.styl');
+        require('../styles/global_default.styl');
+      }else{
+//        require(['../styles/global_default.styl'], function ($) {
+//          requirejs.undef('../styles/global_default.styl');
+//        });
+        //requirejs.undef('../styles/global_default.styl');
+        require('../styles/global_zhanshi.styl');
+      }
+      this.$store.commit("systemChange/setStyleChange",theme);
     }
   }
 };

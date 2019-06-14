@@ -1,7 +1,7 @@
 "use strict";
 export default {
     configs: {
-        theme: "zhanshi",  //框架主题
+        theme: "default",  //框架主题
         themes: ['default', 'zhanshi'],
         productId: "ecss",// 产品名称
         language: "zh",

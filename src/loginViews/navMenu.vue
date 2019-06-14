@@ -8,7 +8,7 @@
         :index="navMenu.templateName"
         :route="navMenu.value"
       >
-        <template slot="title">
+        <template>
           <i :class="navMenu.imgSrc"></i>
           <span slot="title" class="item_title">{{navMenu.menuName}}</span>
         </template>
@@ -45,5 +45,8 @@ export default {
 <style>
 .el-submenu .el-submenu__title {
   text-align: left !important;
+}
+.el-submenu .el-submenu__title .el-icon-arrow-right{
+  display: none !important;
 }
 </style>
