@@ -8,6 +8,7 @@ import Axios from 'axios'
 import store from './store'  //vuex中使用store
 import ElementUI from 'element-ui';         //引入element-ui组件库
 import 'element-ui/lib/theme-chalk/index.css'; //引入element-ui组件库
+import comUtil from "./common/commonJs/commonUtil.js"                // 公共方法
 
 import Mock from './mock'  //引入mock数据，关闭则注释该行
 Mock.bootstrap()    //引入mock数据，关闭则注释该行
@@ -38,13 +39,15 @@ router.beforeEach((to, from, next) => {
   if (isLogin === false) {
     next();
   } else {
-    if (to.path) {                   // 有此路径
+    var isCheck = comUtil.isCheckRouterByList(store.getters['userInfo/getUserRouterNameList'], to.path);
+    if (to.path && isCheck === true) {                   // 有此路径
       next()
     } else {                        // 无此路径
       next({ path: '/404' })
     }
   }
 });
+
 
 //Axios请求拦截器相关处理
 var axiosPromiseArr = []; //储存cancel token// 添加请求拦截器，在请求头中加token
@@ -168,5 +171,10 @@ new Vue({
       };
       return tempRoot;
     },
+
+    dddd: function () {
+      return 1;
+    },
+
   },
 })

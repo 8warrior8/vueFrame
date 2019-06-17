@@ -1,7 +1,7 @@
 [
     {
         "menuName": "张国印",
-        "templateName": "HelloWorld",
+        "templateName": "hello-world1222",
         "url": "",
         "visible": true,
         "imgSrc": "el-icon-share",
@@ -10,7 +10,7 @@
         "childViews": [
             {
                 "menuName": "张国印学习",
-                "templateName": "ZhangTest1",
+                "templateName": "zhang-test1",
                 "url": "",
                 "visible": true,
                 "imgSrc": "el-icon-share",

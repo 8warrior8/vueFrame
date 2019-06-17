@@ -1,12 +1,13 @@
 <template>
-  <div class="navMenu">
-    <div v-for="(navMenu) in navMenus" :key="navMenu.id">
+  <div>
+    <template v-for="(navMenu) in navMenus">
       <el-menu-item
         v-if="navMenu.childViews==null"
-        :key="navMenu.id"
+        :key="navMenu.id + ''"
         :data="navMenu"
         :index="navMenu.templateName"
         :route="navMenu.value"
+        v-on:click.stop.native="gotoMenuLast(navMenu.value, '1')"
       >
         <template>
           <i :class="navMenu.imgSrc"></i>
@@ -16,9 +17,10 @@
 
       <el-submenu
         v-if="navMenu.childViews"
-        :key="navMenu.id"
+        :key="navMenu.id + ''"
         :data="navMenu"
         :index="navMenu.templateName"
+        v-on:click.stop.native="gotoMenuLast(navMenu.value, '0')"
       >
         <template slot="title">
           <i :class="navMenu.imgSrc"></i>
@@ -26,7 +28,7 @@
         </template>
         <NavMenu :navMenus="navMenu.childViews"></NavMenu>
       </el-submenu>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -38,15 +40,21 @@ export default {
     return {};
   },
   mounted() {},
-  methods: {}
+  methods: {
+    gotoMenuLast: function(templateName, type) {
+      if (templateName && templateName.length > 0 && type && type === "0") {
+        this.$router.push({ path: templateName });
+      }
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 .el-submenu .el-submenu__title {
   text-align: left !important;
 }
-.el-submenu .el-submenu__title .el-icon-arrow-right{
-  display: none !important;
+* {
+  outline: none;
 }
 </style>

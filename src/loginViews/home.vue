@@ -1,11 +1,11 @@
 <template>
   <el-container style="height: 100%;">
-    <el-header height="50px">
+    <el-header height="51px">
       <navHead v-on:btnMenuChange="btnMenuChange"></navHead>
     </el-header>
 
     <el-container style="heigth:100%;">
-      <el-aside ref="pageLeft1">
+      <el-aside ref="pageLeft1" style='width:200px' >
         <navMenuRoot ref="menu1"></navMenuRoot>
       </el-aside>
       <el-main style="width: 100%;height: 100%;">
@@ -40,9 +40,9 @@ export default {
     btnMenuChange: function(isOpen) {
       this.$refs.menu1.setMenuCollapseStatus(isOpen);
       if (isOpen === true) {
-        this.$refs.pageLeft1.$el.style.width = "50px";
+        this.$refs.pageLeft1.$el.style.width = "51px";
       } else {
-        this.$refs.pageLeft1.$el.style.width = "300px";
+        this.$refs.pageLeft1.$el.style.width = "200px";
       }
     }
   },

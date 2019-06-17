@@ -9,6 +9,7 @@ const userInfo = {
 		operList: [],//用户操作权限
 		menuList: [],	//用户需要显示的菜单列表
 		userRouterMain: [],	//系统主路由信息
+		userRouterNameList:[],//系统路由对于对应节点名称
 	},
 	getters: {
 		getUserName: state => {
@@ -31,6 +32,9 @@ const userInfo = {
 		},
 		getUserImageRul: state => {
 			return state.userImageRul
+		},
+		getUserRouterNameList: state => {
+			return state.userRouterNameList
 		},
 	},
 	mutations: {
@@ -58,6 +62,9 @@ const userInfo = {
 				tempUrl = "../static/system/" + v;
 			}
 			state.userImageRul = tempUrl
+		},
+		setUserRouterNameList(state, v) {
+			state.userRouterNameList = v
 		},
 	},
 	actions: {
