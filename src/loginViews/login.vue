@@ -24,7 +24,7 @@
 
 <script>
   import '../common/jigsaw.js'
-  import '../common/jigsaw.css'
+  import '../styles/jigsaw.css'
 export default {
   data() {
     return {
