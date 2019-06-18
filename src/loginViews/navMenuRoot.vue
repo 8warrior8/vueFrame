@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :collapse="isMenuOpen"
+    :collapse="this.$store.getters['systemChange/getIsMenuOpen']"
     :default-active="this.$route.name"
     router
     unique-opened
@@ -46,18 +46,12 @@ import NavMenu from "./navMenu.vue";
 export default {
   name: "NavMenuRoot",
   data() {
-    return {
-      isMenuOpen: false
-    };
+    return {};
   },
   components: {
     navMenu: NavMenu
   },
   methods: {
-    setMenuCollapseStatus: function(isOpen) {
-      this.isMenuOpen = isOpen;
-    },
-
     gotoMenuFirst: function(templateName, type) {
       if (templateName && templateName.length > 0 && type && type === "0") {
         this.$router.push({ path: templateName });
