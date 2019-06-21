@@ -38,7 +38,7 @@ export default {
 
   mounted() {
     this.sysImage = "../static/system/" + this.$environmentCfg.configs.sysImgUrl;
-    this.changeColor(this.$environmentCfg.configs.theme)
+    //this.changeColor(this.$environmentCfg.configs.theme)
   },
   methods: {
     //注销系统
@@ -60,23 +60,22 @@ export default {
       this.$emit('btnMenuChange', this.isCollapse);
     },
     changeColor:function(theme){
-      if(theme==='default'){
-        //requirejs.undef('../styles/global_zhanshi.styl');
-        require('../styles/global_default.styl');
-      }else{
-//        require(['../styles/global_default.styl'], function ($) {
-//          requirejs.undef('../styles/global_default.styl');
-//        });
-        //requirejs.undef('../styles/global_default.styl');
-        require('../styles/global_zhanshi.styl');
-      }
+      document.getElementById('app').className ='theme-'+theme ;
       this.$store.commit("systemChange/setStyleChange",theme);
     }
   }
 };
 </script>
 
-<style>
+<style lang="stylus">
+  @import "../styles/global.styl";
+  .theme-default
+    theme($bg-color-light,$color-light);
+
+
+  .theme-zhanshi
+    theme($bg-color-dark,$color-dark);
+
   .el-dropdown-link {
     cursor: pointer;
     color: #409EFF;
