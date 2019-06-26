@@ -38,7 +38,7 @@ export default {
 
   mounted() {
     this.sysImage = "../static/system/" + this.$environmentCfg.configs.sysImgUrl;
-    //this.changeColor(this.$environmentCfg.configs.theme)
+    this.changeColor(this.$environmentCfg.configs.theme)
   },
   methods: {
     //注销系统

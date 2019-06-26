@@ -14,6 +14,7 @@
 </template>
 
 <script>
+//require("./ui_test_change_style.css")
 export default {
   name: "ElementUiTest",
   data() {
@@ -45,11 +46,22 @@ export default {
   min-height: 36px;
 }
 
-.layout-bg-purple {
-  background: #d3dce6;
-}
-
 .layout-bg-purple-light {
   background: #e5e9f2;
+}
+</style>
+
+
+<style lang="stylus" scoped>
+.theme-default {
+  .layout-bg-purple {
+    background: black;
+  }
+}
+
+.theme-zhanshi {
+  .layout-bg-purple {
+    background: red;
+  }
 }
 </style>
