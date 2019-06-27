@@ -50,11 +50,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.el-submenu .el-submenu__title {
-  text-align: left !important;
-}
-* {
-  outline: none;
-}
+<style lang="stylus" scoped>
+
 </style>

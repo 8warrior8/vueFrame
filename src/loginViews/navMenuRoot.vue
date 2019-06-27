@@ -61,11 +61,22 @@ export default {
 };
 </script>
 
-<style scoped>
-.el-submenu .el-submenu__title {
-  text-align: left !important;
-}
-* {
-  outline: none;
-}
+<style lang="stylus">
+  .theme-default
+    .el-submenu__title
+      color:#333 !important
+
+  .theme-zhanshi
+    .el-submenu__title
+      color:#fff !important
+    .el-menu-item
+      color:#fff!important
+    .el-menu-item:focus, .el-menu-item:hover
+      background-color: #2261AF;
+    .el-submenu__title:focus, .el-submenu__title:hover
+      background-color: #2261AF;
+
+  .el-submenu .el-menu{
+    background: none;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-head">
     <div>
       <img :src="sysImage" style="height:40px">
       <i class="el-icon-s-fold" v-if="!isCollapse" @click="btnOpenClick(isCollapse)"></i>
@@ -72,10 +72,30 @@ export default {
   .theme-default
     theme($bg-color-light,$color-light);
 
-
   .theme-zhanshi
     theme($bg-color-dark,$color-dark);
 
+  .nav-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-head > div  {
+    display: flex;
+    align-items: center;
+  }
+  .nav-head > div:nth-of-type(1) > i {
+    margin-left: 125px;
+  }
+  .nav-head > div > i:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  .nav-head > div:nth-of-type(2) {
+    width: 180px;
+    justify-content: space-around;
+  }
   .el-dropdown-link {
     cursor: pointer;
     color: #409EFF;

@@ -1,6 +1,6 @@
 <template>
   <div class="gess-general-view-body">
-    <div calss="gess-general-view-body-left">
+    <div class="gess-general-view-body-left">
       <div>客户量</div>
       <div>告警排名</div>
     </div>
