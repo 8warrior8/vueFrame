@@ -66,6 +66,15 @@
                         "imgSrc": "el-icon-share",
                         "imgClickSrc": "",
                         "operationId": ""
+                    },
+                    {
+                        "menuName": "运行监控",
+                        "templateName": "gcss-general-view",
+                        "url": "components/gcss_general_view/gcss_general_view.vue",
+                        "visible": true,
+                        "imgSrc": "el-icon-share",
+                        "imgClickSrc": "",
+                        "operationId": ""
                     }
                 ]
             }
