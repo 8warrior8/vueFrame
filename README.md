@@ -13,6 +13,8 @@ cnpm i element-ui -S
 cnpm install stylus --save
 cnpm install stylus-loader --save
 cnpm install axios
+cnpm install echarts --save
+cnpm install jquery --save-dev
 
 # serve with hot reload at localhost:8080
 npm run dev
