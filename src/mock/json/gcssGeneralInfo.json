@@ -1,0 +1,78 @@
+{
+    "regionList": [
+        {
+            "provinceId": "-662225376",
+            "provinceName": "江苏省",
+            "region_id": "1447136987",
+            "region_name": "苏州市",
+            "region_full_name": "苏州市",
+            "pcode": "1"
+        },
+        {
+            "provinceId": "-662225376",
+            "provinceName": "江苏省",
+            "region_id": "-591652887",
+            "region_name": "无锡市",
+            "region_full_name": "无锡市",
+            "pcode": "2"
+        },
+        {
+            "provinceId": "-662225376",
+            "provinceName": "江苏省",
+            "region_id": "-945679336",
+            "region_name": "常州市",
+            "region_full_name": "常州市",
+            "pcode": "3"
+        },
+        {
+            "provinceId": "-662225376",
+            "provinceName": "江苏省",
+            "region_id": "539864141",
+            "region_name": "南京市",
+            "region_full_name": "南京市",
+            "pcode": "4"
+        },
+        {
+            "provinceId": "-662225376",
+            "provinceName": "江苏省",
+            "region_id": "2003219373",
+            "region_name": "泰州市",
+            "region_full_name": "泰州市",
+            "pcode": "5"
+        },
+        {
+            "provinceId": "-662225376",
+            "provinceName": "江苏省",
+            "region_id": "-1693571701",
+            "region_name": "宿迁市",
+            "region_full_name": "宿迁市",
+            "pcode": "6"
+        }
+    ],
+    "leftbusinessInfo": {
+        "clientSun": "200",
+        "businessSum": "140",
+        "businessList": [
+            {
+                "object_class": "40006",
+                "object_class_name": "短信业务",
+                "sum": "20"
+            },
+            {
+                "object_class": "40007",
+                "object_class_name": "彩信业务",
+                "sum": "30"
+            },
+            {
+                "object_class": "40001",
+                "object_class_name": "语音业务",
+                "sum": "40"
+            },
+            {
+                "object_class": "40002",
+                "object_class_name": "互联网业务",
+                "sum": "50"
+            }
+        ]
+    }
+}

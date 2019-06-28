@@ -9,6 +9,7 @@ import store from './store'  //vuex中使用store
 import ElementUI from 'element-ui';         //引入element-ui组件库
 import 'element-ui/lib/theme-chalk/index.css'; //引入element-ui组件库
 import comUtil from "./common/commonJs/commonUtil.js"                // 公共方法
+import Echarts from 'echarts'  // 引入echarts
 
 import Mock from './mock'  //引入mock数据，关闭则注释该行
 Mock.bootstrap()    //引入mock数据，关闭则注释该行
@@ -16,6 +17,7 @@ Mock.bootstrap()    //引入mock数据，关闭则注释该行
 Vue.config.productionTip = false
 Vue.prototype.$environmentCfg = Environment  //加载系统环境变量相关数据信息
 Vue.prototype.$axios = Axios    //引入axios相关处理能力
+Vue.prototype.$echarts = Echarts
 Vue.use(ElementUI);
 
 //路由守护，确保有效路由可以执行

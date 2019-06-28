@@ -10,6 +10,8 @@
       </el-col>
     </el-row>
     <p>ICO图标展示："width:" {{pageWidth}} " height:"{{pageHeight}}</p>
+    <p v-bind:title="msg">html属性不能使用双大括号形式绑定，只能使用v-bind指令</p>
+    <button v-on:click="btnDataChange($event)">数据变化</button>
   </div>
 </template>
 
@@ -36,7 +38,11 @@ export default {
     "$store.state.systemChange.Style_Change": function(styleName) {}
   },
 
-  methods: {}
+  methods: {
+    btnDataChange: function (event) {
+      this.msg = '系统测试，问题解决了！';
+    },
+  }
 };
 </script>
 

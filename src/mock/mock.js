@@ -45,6 +45,22 @@ export default {
             msg: 'failure'
         });
 
+        // 根据省ID获取该省下的地市信息
+        mock.onGet('/localRegion').reply(config => {
+            return new Promise((resolve, reject) => { 
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.regionList }]);
+            });
+        });
+
+        // 根据省ID获取该省下的地市信息
+        mock.onGet('/leftBusinessCount').reply(config => {
+            return new Promise((resolve, reject) => { 
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.leftbusinessInfo }]);
+            });
+        });
+
 
     }
 };
