@@ -1,11 +1,11 @@
 <template>
-  <div ref="chartBar1" style="height:100%; overflow:hidden;"></div>
+  <div ref="chartBar1" style="height:100%; min-height:100px; min-width:100px;"></div>
 </template>
 
 <script>
 import Echarts from "echarts";
 export default {
-  name: "comp-echart-bar",
+  name: "comp-echart-bar-line",
   props: {
     dataSource: {
       type: Array,
@@ -18,23 +18,52 @@ export default {
       default: function() {
         return {};
       }
+    },
+    //是否显示tip
+    showTip: {
+      type: Boolean,
+      default: true
+    },
+    //是否显示提示框浮层
+    showContent: {
+      type: Boolean,
+      default: true
+    },
+    //x轴呈现方式  0：正常显示  1：换行显示
+    xlabelType: {
+      type: Number,
+      default: 0
+    },
+    //是否显示Legend
+    showLegend: {
+      type: Boolean,
+      defalut: true
+    },
+    //自定义tip函数
+    tipFormatterFun: {
+      type: Function,
+      default: function(item) {
+        return item.name + ":" + item.value + "(" + item.percent + "%)";
+      }
+    },
+    //x周label formatter方法
+    labelFormatterFun: {
+      type: Function,
+      default: function(item) {
+        return item.name;
+      }
     }
   },
   data() {
     return {
       myChart: null,
       baseoption: null,
-      showTip: true, //是否显示tip
-      showContent: true, //是否显示提示框浮层
-      formatterFun: null, //自定义tip函数
       showAxisTick: true,
       xisLineColor: "#333",
       fontSize: 12,
-      xLabelFormatterFun: null, //x周label formatter方法
       showSplitLine: false,
       splitLineColor: ["#ccc"],
       yAxisName1: "",
-      showAxisTick: true,
       axisLineColor: "#333",
       yMax1: null,
       gridTop: 20,
@@ -50,10 +79,7 @@ export default {
       symbolSize: 4,
       lineType: "",
       markLineFlag: false,
-      showLegend: true, //是否显示Legend
-      xlabelType: 0, //x轴呈现方式  0：正常显示  1：换行显示
-      showSymbol: true, //是否显示showSymbol
-      axisNameTextColor: ""
+      showSymbol: true //是否显示showSymbol
     };
   },
 
@@ -66,6 +92,24 @@ export default {
     this.myChart.on("dblclick", params => {
       this.$emit("pointdbClick", params);
     });
+    this.initOption();
+  },
+
+  //数据回收方法
+  destroyed: function() {
+    if (this.myChart) {
+      this.myChart = null;
+    }
+    if (this.dataSource) {
+      this.dataSource = [];
+      this.dataSource = null;
+    }
+    if (this.customTheme) {
+      this.customTheme = null;
+    }
+    if (this.baseoption) {
+      this.baseoption = null;
+    }
   },
 
   watch: {
@@ -103,7 +147,7 @@ export default {
           axisPointer: {
             type: "line"
           },
-          formatter: self.formatterFun
+          formatter: self.tipFormatterFun
         },
         legend: {
           data: []
@@ -127,7 +171,7 @@ export default {
               textStyle: {
                 fontSize: self.fontSize
               },
-              formatter: self.xLabelFormatterFun,
+              formatter: self.labelFormatterFun,
               interval: 0
             }
           }
@@ -245,7 +289,7 @@ export default {
           option.series.push(dataobj);
         }
         if (this.markLineFlag) {
-          var markLineSource = this.get("marklineSource");
+          var markLineSource = this.marklineSource;
           if (markLineSource) {
             option.series[0].markLine = {
               silent: true,
@@ -336,6 +380,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

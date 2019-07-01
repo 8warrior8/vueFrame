@@ -23,7 +23,7 @@
 
 
 <script>
-  import '../common/jigsaw.js'
+  import '../common/commonJs/jigsaw.js'
   import '../styles/jigsaw.css'
 export default {
   data() {

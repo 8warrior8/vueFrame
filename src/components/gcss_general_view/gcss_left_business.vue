@@ -16,11 +16,13 @@
       </div>
     </div>
     <div class="gcss-left-business-body-bottom">
-      <barchart
+      <piechart
         v-bind:dataSource="dataSource"
         v-on:pointClick="pointClick"
         v-on:pointdbClick="pointdbClick"
-      ></barchart>
+        v-bind:labelFormatterFun="labelFormatterFun1"
+        v-bind:tipFormatterFun="tipFormatterFun1"
+      ></piechart>
     </div>
   </div>
 </template>
@@ -29,7 +31,7 @@
 <script>
 import "./gcss_general_view.css";
 import { getGeneralLeftBusinessCount } from "../../service/gcssGeneralViewAjax";
-import Barchart from "../../common/businessviews/comp_echarts/comp_echart_bar.vue";
+import Piechart from "../../common/businessviews/comp_echarts/comp_echart_pie.vue";
 export default {
   name: "gcssLeftBusiness",
   props: ["userlevel", "userregionid"],
@@ -53,7 +55,7 @@ export default {
   },
 
   components: {
-    barchart: Barchart
+    piechart: Piechart
   },
 
   methods: {
@@ -77,21 +79,20 @@ export default {
     },
     //整合数据源，绑定到chart
     initChartsDataSource: function(objList) {
+      var self = this;
       var list = [];
-      var tempModel = {
-        title: "测试",
-        chartType: "line",
-        color: "red",
-        data: []
-      };
-      objList.forEach(element => {
-        tempModel.data.push({
-          title:element.object_class_name,
+      objList.forEach(function(element, index) {
+        var tempColor = self.$comUtil.getColorByIndex(index);
+        list.push({
+          color: tempColor,
+          objectClass: element.object_class,
           name: element.object_class_name,
-          value: element.sum
+          value: element.sum,
+          alarmSum: 10,
+          alarmLevel: 5,
+          alarmCellId: "0"
         });
       });
-      list.push(tempModel);
       this.dataSource = list;
     },
 
@@ -100,6 +101,37 @@ export default {
     },
     pointdbClick: function(param) {
       var _param = param;
+    },
+
+    //饼形图中提示文字的样式控制
+    labelFormatterFun1: function(item) {
+      var strLabel = item.name + "\n" + item.percent + "% ";
+      if (item.data && item.data.userObject && item.data.userObject.alarmSum) {
+        strLabel = strLabel + item.data.userObject.alarmSum;
+      } else {
+        strLabel = strLabel + "0";
+      }
+      return strLabel;
+    },
+
+    //提示信息控制
+    tipFormatterFun1: function(item) {
+      var strLabel =
+        "专线名称：" +
+        item.name +
+        "<br>" +
+        "总数量：" +
+        item.value +
+        "<br>" +
+        "百分比：" +
+        item.percent +
+        "% <br>";
+      if (item.data && item.data.userObject && item.data.userObject.alarmSum) {
+        strLabel = strLabel + "告警数量：" + item.data.userObject.alarmSum;
+      } else {
+        strLabel = strLabel + "告警数量：0";
+      }
+      return strLabel;
     }
   }
 };

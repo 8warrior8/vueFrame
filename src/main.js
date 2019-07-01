@@ -17,7 +17,8 @@ Mock.bootstrap()    //引入mock数据，关闭则注释该行
 Vue.config.productionTip = false
 Vue.prototype.$environmentCfg = Environment  //加载系统环境变量相关数据信息
 Vue.prototype.$axios = Axios    //引入axios相关处理能力
-Vue.prototype.$echarts = Echarts
+Vue.prototype.$echarts = Echarts;
+Vue.prototype.$comUtil = comUtil;
 Vue.use(ElementUI);
 
 //路由守护，确保有效路由可以执行

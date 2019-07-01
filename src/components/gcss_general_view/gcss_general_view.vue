@@ -82,7 +82,7 @@ export default {
 
     //初始化页面其他组件对应的数据
     initUiStart: function() {
-        this.$refs.leftBusiness1.startUp();
+      this.$refs.leftBusiness1.startUp();
     }
   }
 };
@@ -94,8 +94,10 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
-  background: #E6E9EF;
+  background: #e6e9ef;
   font-size: 12px;
+  min-height: 400px;
+  min-width: 600px;
 }
 
 .gess-general-view-body-left {
@@ -114,7 +116,7 @@ export default {
   flex-shrink: 1;
   flex-basis: auto;
   flex-direction: column;
-  background:white;
+  background: white;
 }
 
 .gess-general-view-body-right {
@@ -132,7 +134,7 @@ export default {
   flex-shrink: 0;
   flex-basis: 45%;
   position: relative;
-  background:white;
+  background: white;
 }
 .gess-general-view-body-left-bottom {
   position: relative;
@@ -141,7 +143,7 @@ export default {
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: auto;
-  background:white;
+  background: white;
 }
 
 .gess-general-view-body-center-center {
@@ -168,7 +170,7 @@ export default {
   flex-shrink: 1;
   flex-basis: 360px;
   flex-direction: column;
-  background:white;
+  background: white;
 }
 
 .gess-general-view-body-right-bottom {
@@ -178,7 +180,7 @@ export default {
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: auto;
-  background:white;
+  background: white;
 }
 </style>
 
