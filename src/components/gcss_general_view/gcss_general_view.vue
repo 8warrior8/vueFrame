@@ -4,7 +4,9 @@
       <div class="gess-general-view-body-left-top">
         <gcssLeftBusiness ref="leftBusiness1" userlevel="1" :userregionid="currProvinceId"></gcssLeftBusiness>
       </div>
-      <div class="gess-general-view-body-left-bottom">告警排名</div>
+      <div class="gess-general-view-body-left-bottom">
+        <gcssLeftTop ref="leftTop1" userlevel="1" :userregionid="currProvinceId"></gcssLeftTop>
+      </div>
     </div>
     <div class="gess-general-view-body-center">
       <div class="gess-general-view-body-center-center">SVG地图</div>
@@ -21,6 +23,7 @@
 <script>
 import { getGeneralReionInfo } from "../../service/gcssGeneralViewAjax";
 import GcssLeftBusiness from "./gcss_left_business.vue";
+import GcssLeftTop from "./gcss_left_top.vue";
 export default {
   name: "gcssGeneralView",
   data() {
@@ -32,7 +35,8 @@ export default {
     };
   },
   components: {
-    gcssLeftBusiness: GcssLeftBusiness
+    gcssLeftBusiness: GcssLeftBusiness,
+    gcssLeftTop: GcssLeftTop
   },
 
   //页面初始化完成后调用该方法
@@ -83,6 +87,7 @@ export default {
     //初始化页面其他组件对应的数据
     initUiStart: function() {
       this.$refs.leftBusiness1.startUp();
+      this.$refs.leftTop1.startUp(this.currRegionList);
     }
   }
 };
@@ -102,7 +107,7 @@ export default {
 
 .gess-general-view-body-left {
   position: relative;
-  width: 250px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   padding: 5px;

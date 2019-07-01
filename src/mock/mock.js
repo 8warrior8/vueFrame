@@ -61,6 +61,23 @@ export default {
             });
         });
 
+        // 根据省ID获取该省下的地市专线数量
+        mock.onGet('/leftTopCount').reply(config => {
+            return new Promise((resolve, reject) => { 
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.lefttopInfo }]);
+            });
+        });
+
+         // 根据省ID获取该省下的地市专线数量
+         mock.onGet('/leftTopAlarm').reply(config => {
+            return new Promise((resolve, reject) => { 
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.lefttopalarm }]);
+            });
+        });
+
+
 
     }
 };

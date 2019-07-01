@@ -285,6 +285,7 @@ export default {
           if (data[i].yAxisIndex) {
             dataobj.yAxisIndex = data[i].yAxisIndex;
           }
+          dataobj.data.userObject = data[i];
           //         dataobj.barWidth = '36%';//写死，以后再传
           option.series.push(dataobj);
         }

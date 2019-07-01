@@ -42,7 +42,14 @@ export default {
       dataSource: []
     };
   },
-  created: function() {},
+
+  //数据回收方法
+  destroyed: function() {
+    if (this.dataSource) {
+      this.dataSource = [];
+      this.dataSource = null;
+    }
+  },
 
   watch: {
     //页面大小发生变化时触发该处理
@@ -97,10 +104,10 @@ export default {
     },
 
     pointClick: function(param) {
-      var _param = param;
+      var _param = param.data.userObject; //用户自定义数据
     },
     pointdbClick: function(param) {
-      var _param = param;
+      var _param = param.data.userObject; //用户自定义数据
     },
 
     //饼形图中提示文字的样式控制
@@ -137,7 +144,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .gcss-left-business-body {
   position: absolute;
   display: flex;
