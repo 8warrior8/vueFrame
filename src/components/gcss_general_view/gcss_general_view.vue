@@ -13,7 +13,39 @@
       <div class="gess-general-view-body-center-bottom">重保信息</div>
     </div>
     <div class="gess-general-view-body-right">
-      <div class="gess-general-view-body-right-top">客户运行情况</div>
+      <div class="gess-general-view-body-right-top">
+        <div class="gcss-general_view_title">
+          <span>
+            <img src="../../../static/gcss_general_view/u124.png">
+            {{rightTitle}}
+          </span>
+          <div class="gcss-general-view-body-right-top-div">
+            <span
+              :class="{'gcss-general-first-right-selected':isRightClientShow===true}"
+              v-on:click="rightTableClick(1)"
+            >客户</span>
+            <span
+              :class="{'gcss-general-first-right-selected':isRightClientShow===false }"
+              v-on:click="rightTableClick(2)"
+            >业务</span>
+          </div>
+        </div>
+
+        <div class="gcss-general-view-body-right-content">
+          <gcssRightClient
+            ref="rightClient1"
+            v-if="isRightClientShow === true"
+            userlevel="1"
+            :userregionid="currProvinceId"
+          ></gcssRightClient>
+          <gcssRightService
+            ref="rightService1"
+            v-if="isRightClientShow === false"
+            userlevel="1"
+            :userregionid="currProvinceId"
+          ></gcssRightService>
+        </div>
+      </div>
       <div class="gess-general-view-body-right-bottom">主动发生率</div>
     </div>
   </div>
@@ -24,6 +56,9 @@
 import { getGeneralReionInfo } from "../../service/gcssGeneralViewAjax";
 import GcssLeftBusiness from "./gcss_left_business.vue";
 import GcssLeftTop from "./gcss_left_top.vue";
+import GcssRightClient from "./gcss_right_client.vue";
+import GcssRightService from "./gcss_right_service.vue";
+import "./gcss_general_view.css";
 export default {
   name: "gcssGeneralView",
   data() {
@@ -31,12 +66,16 @@ export default {
       msg: "Welcome to Your Vue.js App",
       currProvinceId: "-1",
       currProvinceName: "",
-      currRegionList: []
+      currRegionList: [],
+      rightTitle: "客户运行情况",
+      isRightClientShow: true
     };
   },
   components: {
     gcssLeftBusiness: GcssLeftBusiness,
-    gcssLeftTop: GcssLeftTop
+    gcssLeftTop: GcssLeftTop,
+    gcssRightClient: GcssRightClient,
+    gcssRightService: GcssRightService
   },
 
   //页面初始化完成后调用该方法
@@ -88,6 +127,47 @@ export default {
     initUiStart: function() {
       this.$refs.leftBusiness1.startUp();
       this.$refs.leftTop1.startUp(this.currRegionList);
+      this.$refs.leftTop1.startUp(this.currRegionList);
+      if (this.isRightClientShow === true) {
+        this.rightClientStartUp();
+      } else {
+        this.rightServieStartUp();
+      }
+    },
+
+    rightClientStartUp: function() {
+      var self = this;
+      if (this.$refs.rightClient1) {
+        this.$refs.rightClient1.startUp(this.currRegionList);
+      } else {
+        setTimeout(function() {
+          self.rightClientStartUp();
+        }, "500");
+      }
+    },
+
+    rightServieStartUp: function() {
+      var self = this;
+      if (this.$refs.rightService1) {
+        this.$refs.rightService1.startUp(this.currRegionList);
+      } else {
+        setTimeout(function() {
+          self.rightServieStartUp();
+        }, "500");
+      }
+    },
+
+    //表格切换切换客户1和业务2
+    rightTableClick: function(type) {
+      if (type === 1) {
+        this.rightTitle = "客户运行情况";
+        this.isRightClientShow = true;
+        this.rightClientStartUp();
+      } else if (type === 2) {
+        this.rightTitle = "业务运行情况";
+        this.isRightClientShow = false;
+        this.rightServieStartUp();
+      }
     }
   }
 };
@@ -126,7 +206,7 @@ export default {
 
 .gess-general-view-body-right {
   position: relative;
-  width: 450px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -186,6 +266,40 @@ export default {
   flex-shrink: 0;
   flex-basis: auto;
   background: white;
+}
+
+.gcss-general-view-body-right-top-div {
+  width: 80px;
+  height: 24px;
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  border: 1px solid #237bdc;
+  border-radius: 3px;
+}
+
+.gcss-general-view-body-right-top-div > span {
+  display: inline-block;
+  line-height: 24px;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid #237bdc;
+  cursor: pointer;
+}
+
+.gcss-general-view-body-right-top-div > span:nth-last-of-type(1) {
+  border-right: none;
+}
+
+.gcss-general-first-right-selected {
+  color: #237bdc;
+  font-weight: bold;
+}
+.gcss-general-view-body-right-content {
+  position: relative;
+  display: flex;
+  flex: 1 1;
 }
 </style>
 

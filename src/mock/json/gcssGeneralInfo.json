@@ -118,5 +118,147 @@
             "region_id": "2003219373",
             "sum": 20
         }
+    ],
+    "resourceLevel": [
+        {
+            "id": 1,
+            "name": "金牌"
+        },
+        {
+            "id": 2,
+            "name": "银牌"
+        },
+        {
+            "id": 3,
+            "name": "铜牌"
+        },
+        {
+            "id": 4,
+            "name": "标准"
+        }
+    ],
+    "rightClientSum": [
+        {
+            "regionId": "1447136987",
+            "levelId": 1,
+            "sum": 101
+        },
+        {
+            "regionId": "1447136987",
+            "levelId": 2,
+            "sum": 102
+        },
+        {
+            "regionId": "1447136987",
+            "levelId": 3,
+            "sum": 103
+        },
+        {
+            "regionId": "1447136987",
+            "levelId": 4,
+            "sum": 104
+        },
+        {
+            "regionId": "-591652887",
+            "levelId": 1,
+            "sum": 201
+        },
+        {
+            "regionId": "-591652887",
+            "levelId": 3,
+            "sum": 203
+        },
+        {
+            "regionId": "-945679336",
+            "levelId": 1,
+            "sum": 300
+        },
+        {
+            "regionId": "539864141",
+            "levelId": 1,
+            "sum": 401
+        },
+        {
+            "regionId": "539864141",
+            "levelId": 2,
+            "sum": 402
+        },
+        {
+            "regionId": "2003219373",
+            "levelId": 1,
+            "sum": 501
+        },
+        {
+            "regionId": "2003219373",
+            "levelId": 3,
+            "sum": 502
+        }
+    ],
+    "rightClientSumAlarm": [
+        {
+            "regionId": "1447136987",
+            "levelId": 1,
+            "sum": 10,
+            "level": 1
+        },
+        {
+            "regionId": "1447136987",
+            "levelId": 2,
+            "sum": 12,
+            "level": 2
+        },
+        {
+            "regionId": "1447136987",
+            "levelId": 3,
+            "sum": 13
+        },
+        {
+            "regionId": "1447136987",
+            "levelId": 4,
+            "sum": 14,
+            "level": 3
+        },
+        {
+            "regionId": "-591652887",
+            "levelId": 1,
+            "sum": 21,
+            "level": 2
+        },
+        {
+            "regionId": "-591652887",
+            "levelId": 3,
+            "sum": 23,
+            "level": 2
+        },
+        {
+            "regionId": "-945679336",
+            "levelId": 1,
+            "sum": 30,
+            "level": 1
+        },
+        {
+            "regionId": "539864141",
+            "levelId": 1,
+            "sum": 41,
+            "level": 1
+        },
+        {
+            "regionId": "539864141",
+            "levelId": 2,
+            "sum": 42,
+            "level": 1
+        },
+        {
+            "regionId": "2003219373",
+            "levelId": 1,
+            "sum": 51,
+            "level": 1
+        },
+        {
+            "regionId": "2003219373",
+            "levelId": 3,
+            "sum": 52,
+            "level": 3
+        }
     ]
 }

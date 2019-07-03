@@ -47,7 +47,7 @@ export default {
 
         // 根据省ID获取该省下的地市信息
         mock.onGet('/localRegion').reply(config => {
-            return new Promise((resolve, reject) => { 
+            return new Promise((resolve, reject) => {
                 var generalInfo = require('./json/gcssGeneralInfo.json');
                 resolve([200, { code: 200, msg: '请求成功', data: generalInfo.regionList }]);
             });
@@ -55,7 +55,7 @@ export default {
 
         // 根据省ID获取该省下的地市信息
         mock.onGet('/leftBusinessCount').reply(config => {
-            return new Promise((resolve, reject) => { 
+            return new Promise((resolve, reject) => {
                 var generalInfo = require('./json/gcssGeneralInfo.json');
                 resolve([200, { code: 200, msg: '请求成功', data: generalInfo.leftbusinessInfo }]);
             });
@@ -63,17 +63,39 @@ export default {
 
         // 根据省ID获取该省下的地市专线数量
         mock.onGet('/leftTopCount').reply(config => {
-            return new Promise((resolve, reject) => { 
+            return new Promise((resolve, reject) => {
                 var generalInfo = require('./json/gcssGeneralInfo.json');
                 resolve([200, { code: 200, msg: '请求成功', data: generalInfo.lefttopInfo }]);
             });
         });
 
-         // 根据省ID获取该省下的地市专线数量
-         mock.onGet('/leftTopAlarm').reply(config => {
-            return new Promise((resolve, reject) => { 
+        // 根据省ID获取该省下的地市专线数量
+        mock.onGet('/leftTopAlarm').reply(config => {
+            return new Promise((resolve, reject) => {
                 var generalInfo = require('./json/gcssGeneralInfo.json');
                 resolve([200, { code: 200, msg: '请求成功', data: generalInfo.lefttopalarm }]);
+            });
+        });
+
+        // 获取客户等级字典数据信息
+        mock.onGet('/resourceDicByLevel').reply(config => {
+            return new Promise((resolve, reject) => {
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.resourceLevel }]);
+            });
+        });
+
+        mock.onGet('/rightClientSum').reply(config => {
+            return new Promise((resolve, reject) => {
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.rightClientSum }]);
+            });
+        });
+
+        mock.onGet('/rightClientAlarm').reply(config => {
+            return new Promise((resolve, reject) => {
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.rightClientSumAlarm }]);
             });
         });
 

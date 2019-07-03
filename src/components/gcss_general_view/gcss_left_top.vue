@@ -70,7 +70,7 @@ export default {
       currRegionList: [],
       allSourceList: [],
       dataSourceList: [],
-      pageSize: 5,
+      pageSize: 8,
       currPageCount: 1,
       currPageIndex: 1,
       pageFirstStatus: false, //上一页是否可用 True 可用 False不可用

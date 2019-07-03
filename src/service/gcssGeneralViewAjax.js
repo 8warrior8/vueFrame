@@ -30,3 +30,25 @@ export const getGeneralLeftTopAlarm = params => {
             res.data
     );
 };
+//获取客户等级字典数据信息
+export const getResourceDicByLevel = params => {
+    return axios.get('/resourceDicByLevel', params).then(
+        res =>
+            res.data
+    );
+};
+//获取客户资源数据
+export const getRightClientSum = params => {
+    return axios.get('/rightClientSum', params).then(
+        res =>
+            res.data
+    );
+};
+
+//获取告警数据
+export const getRightClientAlarm = params => {
+    return axios.get('/rightClientAlarm', params).then(
+        res =>
+            res.data
+    );
+};
