@@ -16,7 +16,7 @@
       <div class="gess-general-view-body-right-top">
         <div class="gcss-general_view_title">
           <span>
-            <img src="../../../static/gcss_general_view/u124.png">
+            <img src="../../../static/gcss_general_view/u124.png" />
             {{rightTitle}}
           </span>
           <div class="gcss-general-view-body-right-top-div">
@@ -46,7 +46,9 @@
           ></gcssRightService>
         </div>
       </div>
-      <div class="gess-general-view-body-right-bottom">主动发生率</div>
+      <div class="gess-general-view-body-right-bottom">
+        <gcssRightChart ref="rightChart1" userlevel="1" :userregionid="currProvinceId"></gcssRightChart>
+      </div>
     </div>
   </div>
 </template>
@@ -58,6 +60,7 @@ import GcssLeftBusiness from "./gcss_left_business.vue";
 import GcssLeftTop from "./gcss_left_top.vue";
 import GcssRightClient from "./gcss_right_client.vue";
 import GcssRightService from "./gcss_right_service.vue";
+import GcssRightChart from "./gcss_right_chart.vue";
 import "./gcss_general_view.css";
 export default {
   name: "gcssGeneralView",
@@ -75,7 +78,8 @@ export default {
     gcssLeftBusiness: GcssLeftBusiness,
     gcssLeftTop: GcssLeftTop,
     gcssRightClient: GcssRightClient,
-    gcssRightService: GcssRightService
+    gcssRightService: GcssRightService,
+    gcssRightChart: GcssRightChart
   },
 
   //页面初始化完成后调用该方法
@@ -133,6 +137,7 @@ export default {
       } else {
         this.rightServieStartUp();
       }
+      this.$refs.rightChart1.startUp();
     },
 
     rightClientStartUp: function() {

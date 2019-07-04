@@ -1,14 +1,33 @@
 <template>
   <div class="elementUiTest-body">
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="date" sortable="custom" label="日期" width="150"></el-table-column>
+      <el-table-column
+        :prop="tableCol.prop"
+        sortable="custom"
+        :label="tableCol.label"
+        :width="tableCol.width"
+      ></el-table-column>
       <el-table-column label="本地">
-        <el-table-column prop="province" sortable="custom" label="省份" width="120"></el-table-column>
-        <el-table-column prop="city"  sortable="custom" label="市区" width="120"></el-table-column>
+        <template v-for="(item, i) in tableCol.bdChilds">
+          <el-table-column
+            :key="i"
+            :prop="item.prop"
+            sortable="custom"
+            :label="item.label"
+            :width="item.width"
+          ></el-table-column>
+        </template>
       </el-table-column>
       <el-table-column label="双跨">
-        <el-table-column prop="address"  sortable="custom" label="地址" width="300"></el-table-column>
-        <el-table-column prop="zip" sortable="custom" label="邮编" width="120"></el-table-column>
+        <template v-for="(item, i) in tableCol.skChilds">
+          <el-table-column
+            :key="i"
+            :prop="item.prop"
+            sortable="custom"
+            :label="item.label"
+            :width="item.width"
+          ></el-table-column>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -20,6 +39,19 @@ export default {
   name: "ElementUiTest",
   data() {
     return {
+      tableCol: {
+        prop: "date",
+        label: "日期",
+        width: "120",
+        bdChilds: [
+          { prop: "province", label: "省份", width: "100" },
+          { prop: "city", label: "市区", width: "" }
+        ],
+        skChilds: [
+          { prop: "address", label: "地址", width: "80" },
+          { prop: "zip", label: "邮编", width: "80" }
+        ]
+      },
       tableData: [
         {
           date: "2016-05-03",

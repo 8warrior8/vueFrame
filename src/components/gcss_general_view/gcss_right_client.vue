@@ -442,7 +442,6 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 5px;
 }
 
 .gcss-right-client-body-top {
@@ -463,6 +462,15 @@ export default {
   height: 35px;
   line-height: 35px;
   padding: 0px;
+  background:white;
+}
+.gcss-right-client-body .el-table .el-table__header-wrapper {
+  height: 37px;
+}
+
+.gcss-right-client-body .el-table .el-table__body-wrapper {
+  overflow-x: auto;
+  height: calc(100% - 37px);
 }
 
 .gcss-right-client-body .gcss-right-client-body-top-div {

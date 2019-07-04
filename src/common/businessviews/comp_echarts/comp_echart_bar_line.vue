@@ -37,21 +37,37 @@ export default {
     //是否显示Legend
     showLegend: {
       type: Boolean,
-      defalut: true
+      defalut: false
     },
     //自定义tip函数
     tipFormatterFun: {
       type: Function,
-      default: function(item) {
-        return item.name + ":" + item.value + "(" + item.percent + "%)";
+      default: function(params) {
+        var xLableStr = "";
+        var list = [];
+        params.forEach(function(item) {
+          if (!xLableStr) {
+            xLableStr = item.axisValue;
+          }
+          list.push(item.seriesName + ":" + item.value);
+        });
+        xLableStr = xLableStr + " <br/>";
+        list.forEach(function(item) {
+          xLableStr = xLableStr + item + " <br/>";
+        });
+        return xLableStr;
       }
     },
     //x周label formatter方法
     labelFormatterFun: {
       type: Function,
       default: function(item) {
-        return item.name;
+        return item;
       }
+    },
+    fontColor: {
+      type: String,
+      default: "#333"
     }
   },
   data() {
@@ -69,9 +85,9 @@ export default {
       gridTop: 20,
       gridLeft: 10,
       gridRight: 10,
-      gridBottom: 10,
+      gridBottom: 20,
       xInterval: 0, //x周刻度显示间隔
-      labelColor: null,
+      labelColor: "#333",
       axisNameTextColor: "",
       doubleYAxis: false,
       yAxisName2: "",
@@ -169,7 +185,8 @@ export default {
             },
             axisLabel: {
               textStyle: {
-                fontSize: self.fontSize
+                fontSize: self.fontSize,
+                color: self.fontColor
               },
               formatter: self.labelFormatterFun,
               interval: 0
@@ -197,7 +214,8 @@ export default {
             },
             axisLabel: {
               textStyle: {
-                fontSize: self.fontSize
+                fontSize: self.fontSize,
+                color: self.fontColor
               }
             },
             max: self.yMax1
@@ -347,7 +365,8 @@ export default {
           },
           axisLabel: {
             textStyle: {
-              fontSize: self.fontSize
+              fontSize: self.fontSize,
+              color: self.fontColor
             }
           },
           max: self.yMax2
