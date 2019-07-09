@@ -85,7 +85,7 @@ export default {
       gridTop: 20,
       gridLeft: 10,
       gridRight: 10,
-      gridBottom: 20,
+      gridBottom: 10,
       xInterval: 0, //x周刻度显示间隔
       labelColor: "#333",
       axisNameTextColor: "",

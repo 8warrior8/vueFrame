@@ -9,8 +9,12 @@
       </div>
     </div>
     <div class="gess-general-view-body-center">
-      <div class="gess-general-view-body-center-center">SVG地图</div>
-      <div class="gess-general-view-body-center-bottom">重保信息</div>
+      <div class="gess-general-view-body-center-center">
+        <gcssMiddleSvg ref="middleSvg1" userlevel="1" :userregionid="currProvinceId"></gcssMiddleSvg>
+      </div>
+      <div class="gess-general-view-body-center-bottom">
+        <gcssMiddleGroup ref="middleGroup1"></gcssMiddleGroup>
+      </div>
     </div>
     <div class="gess-general-view-body-right">
       <div class="gess-general-view-body-right-top">
@@ -61,6 +65,8 @@ import GcssLeftTop from "./gcss_left_top.vue";
 import GcssRightClient from "./gcss_right_client.vue";
 import GcssRightService from "./gcss_right_service.vue";
 import GcssRightChart from "./gcss_right_chart.vue";
+import GcssMiddleGroup from "./gcss_middle_group.vue";
+import GcssMiddleSvg from "./gcss_middle_svg.vue";
 import "./gcss_general_view.css";
 export default {
   name: "gcssGeneralView",
@@ -79,7 +85,9 @@ export default {
     gcssLeftTop: GcssLeftTop,
     gcssRightClient: GcssRightClient,
     gcssRightService: GcssRightService,
-    gcssRightChart: GcssRightChart
+    gcssRightChart: GcssRightChart,
+    gcssMiddleGroup: GcssMiddleGroup,
+    gcssMiddleSvg: GcssMiddleSvg
   },
 
   //页面初始化完成后调用该方法
@@ -138,6 +146,7 @@ export default {
         this.rightServieStartUp();
       }
       this.$refs.rightChart1.startUp();
+      this.$refs.middleGroup1.startUp();
     },
 
     rightClientStartUp: function() {
@@ -192,7 +201,7 @@ export default {
 
 .gess-general-view-body-left {
   position: relative;
-  width: 300px;
+  width: 25%;
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -211,7 +220,7 @@ export default {
 
 .gess-general-view-body-right {
   position: relative;
-  width: 400px;
+  width: 25%;
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -242,6 +251,7 @@ export default {
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: auto;
+  border-bottom: 2px dashed #b8b8b8;
 }
 
 .gess-general-view-body-center-bottom {

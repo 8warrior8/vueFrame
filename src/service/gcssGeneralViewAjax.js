@@ -52,3 +52,11 @@ export const getRightClientAlarm = params => {
             res.data
     );
 };
+
+//获取重保信息
+export const getGroupItemInfo = params => {
+    return axios.get('/groupItemInfo', params).then(
+        res =>
+            res.data
+    );
+};

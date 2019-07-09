@@ -260,5 +260,21 @@
             "sum": 52,
             "level": 3
         }
+    ],
+    "groupItemList": [
+        {
+            "group_id": "10001",
+            "group_name": "五一重保组",
+            "effect_time": "",
+            "close_time": "",
+            "group_type_id": "1"
+        },
+        {
+            "group_id": "10002",
+            "group_name": "新年重保组",
+            "effect_time": "",
+            "close_time": "",
+            "group_type_id": "1"
+        }
     ]
 }
