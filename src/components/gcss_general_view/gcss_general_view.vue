@@ -147,6 +147,12 @@ export default {
       }
       this.$refs.rightChart1.startUp();
       this.$refs.middleGroup1.startUp();
+      this.$refs.middleSvg1.startUp(
+        this.currProvinceName,
+        this.currProvinceId,
+        this.currProvinceName,
+        this.currRegionList
+      );
     },
 
     rightClientStartUp: function() {

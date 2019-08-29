@@ -10,6 +10,7 @@ import ElementUI from 'element-ui';         //引入element-ui组件库
 import 'element-ui/lib/theme-chalk/index.css'; //引入element-ui组件库
 import comUtil from "./common/commonJs/commonUtil.js"                // 公共方法
 import Echarts from 'echarts'  // 引入echarts
+import VueSimpleSVG from 'vue-simple-svg' //引入SVG组件
 
 import Mock from './mock'  //引入mock数据，关闭则注释该行
 Mock.bootstrap()    //引入mock数据，关闭则注释该行
@@ -20,6 +21,8 @@ Vue.prototype.$axios = Axios    //引入axios相关处理能力
 Vue.prototype.$echarts = Echarts;
 Vue.prototype.$comUtil = comUtil;
 Vue.use(ElementUI);
+Vue.use(VueSimpleSVG)
+
 
 //路由守护，确保有效路由可以执行
 router.beforeEach((to, from, next) => {

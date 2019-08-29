@@ -60,3 +60,11 @@ export const getGroupItemInfo = params => {
             res.data
     );
 };
+
+//获取地图上的数据信息
+export const getSvgItemInfo = params => {
+    return axios.get('/getSvgItemInfo', params).then(
+        res =>
+            res.data
+    );
+};

@@ -15,7 +15,7 @@ cnpm install stylus-loader --save
 cnpm install axios
 cnpm install echarts --save
 cnpm install jquery --save-dev
-
+cnpm install vue-simple-svg --save-dev
 # serve with hot reload at localhost:8080
 npm run dev
 

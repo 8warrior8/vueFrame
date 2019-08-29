@@ -106,6 +106,13 @@ export default {
             });
         });
 
+        mock.onGet('/getSvgItemInfo').reply(config => {
+            return new Promise((resolve, reject) => {
+                var generalInfo = require('./json/gcssGeneralInfo.json');
+                resolve([200, { code: 200, msg: '请求成功', data: generalInfo.getSvgItemList }]);
+            });
+        });
+
 
 
     }

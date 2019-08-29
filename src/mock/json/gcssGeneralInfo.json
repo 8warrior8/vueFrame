@@ -276,5 +276,28 @@
             "close_time": "",
             "group_type_id": "1"
         }
+    ],
+    "getSvgItemList": [
+        {
+            "id": "-518079985_-1150999981",
+            "a_id": "-518079985",
+            "z_id": "-1150999981",
+            "service_sla": 2,
+            "serverList": [
+                {
+                    "service_id": "10001",
+                    "service_name": "北京-上海",
+                    "a_region_id": "-518079985",
+                    "a_region_name": "合肥",
+                    "z_region_id": "-1150999981",
+                    "z_region_name": "宿州",
+                    "service_sla": "2",
+                    "cellId": "",
+                    "alarmLevel": 5,
+                    "alarmCount": 0
+                }
+            ],
+            "alarm_level": 5
+        }
     ]
 }
