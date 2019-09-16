@@ -42,7 +42,12 @@
           <div class="ln-mobile-cloud-right-bottom">
             <div class="ln-mobile-cloud-headline">业务承载</div>
             <div class="ln-mobile-cloud-info">
-              <LnMobileCloudBear></LnMobileCloudBear>
+              <div class="ln-mobile-cloud-bearing">
+                <LnMobileCloudBear></LnMobileCloudBear>
+              </div>
+              <div class="ln-mobile-cloud-forecast">
+                <LnMobileCloudForecast></LnMobileCloudForecast>
+              </div>
             </div>
           </div>
         </div>
@@ -57,6 +62,7 @@
   import LnMobileCloudRank from "./LnMobileCloud/LnMobileCloudRank.vue";
   import LnMobileCloudSituation from "./LnMobileCloud/LnMobileCloudSituation.vue";
   import LnMobileCloudBear from "./LnMobileCloud/LnMobileCloudBear.vue";
+  import LnMobileCloudForecast from "./LnMobileCloud/LnMobileCloudForecast.vue";
     export default {
       components: {
         LnMobileCloudAnalysis: LnMobileCloudAnalysis,
@@ -64,7 +70,8 @@
         LnMobileCloudMaps:LnMobileCloudMaps,
         LnMobileCloudRank:LnMobileCloudRank,
         LnMobileCloudSituation:LnMobileCloudSituation,
-        LnMobileCloudBear:LnMobileCloudBear
+        LnMobileCloudBear:LnMobileCloudBear,
+        LnMobileCloudForecast:LnMobileCloudForecast
       }
     }
 </script>
@@ -88,17 +95,26 @@
     flex:1 1 auto;
     display: flex;
   }
+  .ln-mobile-cloud-info{
+    flex:1 1 auto;
+  }
   .ln-mobile-cloud-left{
     width:32%;
     height:100%;
   }
   .ln-mobile-cloud-left-top{
+    position: relative;
     width:100%;
     height:35%;
+    display: flex;
+    flex-direction: column;
   }
   .ln-mobile-cloud-left-bottom{
+    position: relative;
     width:100%;
     height:65%;
+    display: flex;
+    flex-direction: column;
     border-top:1px solid #ccc;
   }
   .ln-mobile-cloud-center{
@@ -108,12 +124,18 @@
     border-right:1px solid #ccc;
   }
   .ln-mobile-cloud-center-top{
+    position: relative;
     width:100%;
     height:70%;
+    display: flex;
+    flex-direction: column;
   }
   .ln-mobile-cloud-center-bottom{
+    position: relative;
     width:100%;
     height:30%;
+    display: flex;
+    flex-direction: column;
     border-top:1px solid #ccc;
   }
   .ln-mobile-cloud-right{
@@ -121,12 +143,28 @@
     height:100%;
   }
   .ln-mobile-cloud-right-top{
+    position: relative;
     width:100%;
     height:35%;
+    display: flex;
+    flex-direction: column;
   }
   .ln-mobile-cloud-right-bottom{
+    position: relative;
     width:100%;
     height:65%;
+    display: flex;
+    flex-direction: column;
     border-top:1px solid #ccc;
+  }
+  .ln-mobile-cloud-bearing{
+    position: relative;
+    width:100%;
+    height:65%;
+  }
+  .ln-mobile-cloud-forecast{
+    position: relative;
+    width:100%;
+    height:35%;
   }
 </style>
