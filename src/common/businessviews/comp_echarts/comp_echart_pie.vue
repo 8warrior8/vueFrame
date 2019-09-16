@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartPie1" style="height:100%; min-height:100px; min-width:100px;"></div>
+  <div class="echart-main-div" ref="chartPie1"></div>
 </template>
 
 <script>
@@ -61,6 +61,7 @@ export default {
       this.$emit("pointdbClick", params);
     });
     this.initOption();
+    this.drawEcharts();
   },
 
   //数据回收方法
@@ -71,10 +72,6 @@ export default {
     if (this.legendData) {
       this.legendData = [];
       this.legendData = null;
-    }
-    if (this.dataSource) {
-      this.dataSource = [];
-      this.dataSource = null;
     }
     if (this.baseoption) {
       this.baseoption = null;
@@ -145,30 +142,32 @@ export default {
     drawEcharts: function() {
       var tempXAxis = [];
       var option = this.initialOption();
-      var data = this.dataSource;
-      this.legendData = [];
-      if (data && data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          var pie = {};
-          pie.name = data[i].name;
-          if (data[i].value === undefined) {
-            pie.value = 0;
-          } else {
-            pie.value = data[i].value;
+      if (this.dataSource) {
+        var data = this.dataSource;
+        this.legendData = [];
+        if (data && data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            var pie = {};
+            pie.name = data[i].name;
+            if (data[i].value === undefined) {
+              pie.value = 0;
+            } else {
+              pie.value = data[i].value;
+            }
+            if (data[i].color) {
+              pie.itemStyle = {
+                normal: {
+                  color: data[i].color
+                }
+              };
+            }
+            pie.userObject = data[i];
+            option.series[0].data.push(pie);
+            this.legendData.push(pie.name);
           }
-          if (data[i].color) {
-            pie.itemStyle = {
-              normal: {
-                color: data[i].color
-              }
-            };
-          }
-          pie.userObject = data[i];
-          option.series[0].data.push(pie);
-          this.legendData.push(pie.name);
         }
+        option.legend.data = this.legendData;
       }
-      option.legend.data = this.legendData;
       this.myChart.setOption(option);
     },
 
@@ -202,3 +201,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.echart-main-div {
+  height: 100%;
+  min-height: 100px;
+  min-width: 100px;
+}
+</style>

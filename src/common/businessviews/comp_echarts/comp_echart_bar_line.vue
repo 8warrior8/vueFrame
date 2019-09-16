@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartBar1" style="height:100%; min-height:100px; min-width:100px;"></div>
+  <div class="echart-main-div" ref="chartBar1"></div>
 </template>
 
 <script>
@@ -109,19 +109,13 @@ export default {
       this.$emit("pointdbClick", params);
     });
     this.initOption();
+    this.drawEcharts();
   },
 
   //数据回收方法
   destroyed: function() {
     if (this.myChart) {
       this.myChart = null;
-    }
-    if (this.dataSource) {
-      this.dataSource = [];
-      this.dataSource = null;
-    }
-    if (this.customTheme) {
-      this.customTheme = null;
     }
     if (this.baseoption) {
       this.baseoption = null;
@@ -228,92 +222,94 @@ export default {
     drawEcharts: function() {
       var tempXAxis = [];
       var option = this.initialOption();
-      var data = this.dataSource;
-      if (data && data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          if (this.showLegend) {
-            option.legend.data.push(data[i].title);
-          }
-          var dataobj = $.extend(
-            true,
-            {
-              name: data[i].title,
-              type: data[i].chartType,
-              showSymbol: this.showSymbol,
-              symbol: "circle",
-              data: []
-            },
-            this.customTheme && this.customTheme.series
-          );
-          if (data[i].chartType === "line" && data[i].areaFlag) {
-            dataobj.areaStyle = {
-              normal: {}
-            };
-          }
-          if (data[i].color) {
-            dataobj.itemStyle = {
-              normal: {
-                color: data[i].color
-              }
-            };
-          }
-          if (data[i].chartType === "line") {
-            dataobj.symbolSize = this.symbolSize;
-            dataobj.lineStyle = {
-              normal: {
-                //width:data[i].lineWidth
-              }
-            };
-            dataobj.itemStyle = {
-              normal: {
-                borderColor: "white",
-                borderWidth: 2
-              }
-            };
-            if (data[i].lineWidth) {
-              dataobj.lineStyle.normal.width = data[i].lineWidth;
+      if (this.dataSource) {
+        var data = this.dataSource;
+        if (data && data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            if (this.showLegend) {
+              option.legend.data.push(data[i].title);
             }
-            if (this.lineType) {
-              dataobj.lineStyle.normal.type = this.lineType;
+            var dataobj = $.extend(
+              true,
+              {
+                name: data[i].title,
+                type: data[i].chartType,
+                showSymbol: this.showSymbol,
+                symbol: "circle",
+                data: []
+              },
+              this.customTheme && this.customTheme.series
+            );
+            if (data[i].chartType === "line" && data[i].areaFlag) {
+              dataobj.areaStyle = {
+                normal: {}
+              };
             }
-            if (this.symbolSize) {
-              dataobj.symbolSize = this.symbolSize;
-            }
-          }
-          if (this.xlabelType === 0) {
-            for (var j = 0; j < data[i].data.length; j++) {
-              if (option.xAxis[0].data.indexOf(data[i].data[j].name) === -1) {
-                option.xAxis[0].data.push(data[i].data[j].name);
-              }
-              dataobj.data.push(data[i].data[j].value);
-            }
-          } else {
-            for (var m = 0; m < data[i].data.length; m++) {
-              if (tempXAxis.indexOf(data[i].data[m].name) === -1) {
-                if (option.xAxis[0].data.length % 2 === 0) {
-                  option.xAxis[0].data.push(data[i].data[m].name);
-                } else {
-                  option.xAxis[0].data.push("\n" + data[i].data[m].name);
+            if (data[i].color) {
+              dataobj.itemStyle = {
+                normal: {
+                  color: data[i].color
                 }
-                tempXAxis.push(data[i].data[m].name);
-              }
-              dataobj.data.push(data[i].data[m].value);
+              };
             }
+            if (data[i].chartType === "line") {
+              dataobj.symbolSize = this.symbolSize;
+              dataobj.lineStyle = {
+                normal: {
+                  //width:data[i].lineWidth
+                }
+              };
+              dataobj.itemStyle = {
+                normal: {
+                  borderColor: "white",
+                  borderWidth: 2
+                }
+              };
+              if (data[i].lineWidth) {
+                dataobj.lineStyle.normal.width = data[i].lineWidth;
+              }
+              if (this.lineType) {
+                dataobj.lineStyle.normal.type = this.lineType;
+              }
+              if (this.symbolSize) {
+                dataobj.symbolSize = this.symbolSize;
+              }
+            }
+            if (this.xlabelType === 0) {
+              for (var j = 0; j < data[i].data.length; j++) {
+                if (option.xAxis[0].data.indexOf(data[i].data[j].name) === -1) {
+                  option.xAxis[0].data.push(data[i].data[j].name);
+                }
+                dataobj.data.push(data[i].data[j].value);
+              }
+            } else {
+              for (var m = 0; m < data[i].data.length; m++) {
+                if (tempXAxis.indexOf(data[i].data[m].name) === -1) {
+                  if (option.xAxis[0].data.length % 2 === 0) {
+                    option.xAxis[0].data.push(data[i].data[m].name);
+                  } else {
+                    option.xAxis[0].data.push("\n" + data[i].data[m].name);
+                  }
+                  tempXAxis.push(data[i].data[m].name);
+                }
+                dataobj.data.push(data[i].data[m].value);
+              }
+            }
+            if (data[i].yAxisIndex) {
+              dataobj.yAxisIndex = data[i].yAxisIndex;
+            }
+            dataobj.data.userObject = data[i];
+            //         dataobj.barWidth = '36%';//写死，以后再传
+            option.series.push(dataobj);
           }
-          if (data[i].yAxisIndex) {
-            dataobj.yAxisIndex = data[i].yAxisIndex;
-          }
-          dataobj.data.userObject = data[i];
-          //         dataobj.barWidth = '36%';//写死，以后再传
-          option.series.push(dataobj);
-        }
-        if (this.markLineFlag) {
-          var markLineSource = this.marklineSource;
-          if (markLineSource) {
-            option.series[0].markLine = {
-              silent: true,
-              data: markLineSource
-            };
+          if (this.markLineFlag) {
+            var markLineSource = this.marklineSource;
+            if (markLineSource) {
+              option.series[0].markLine = {
+                silent: true,
+                data: markLineSource
+              };
+            }
           }
         }
       }
@@ -400,3 +396,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.echart-main-div {
+  height: 100%;
+  min-height: 100px;
+  min-width: 100px;
+}
+</style>

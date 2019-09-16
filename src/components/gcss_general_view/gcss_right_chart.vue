@@ -64,6 +64,7 @@ export default {
       var tempModel1 = {
         title: "当前值",
         chartType: "line",
+        //areaFlag: true,
         color: self.$comUtil.getColorByIndex(0),
         data: []
       };
@@ -74,6 +75,7 @@ export default {
       var tempModel2 = {
         title: "今日值",
         chartType: "line",
+        //areaFlag: true,
         color: self.$comUtil.getColorByIndex(1),
         data: []
       };
