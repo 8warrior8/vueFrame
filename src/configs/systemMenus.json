@@ -1,4 +1,12 @@
-[
+[  {
+      "menuName": "辽宁移动私有云",
+      "templateName": "LnMobileCloud",
+      "url": "components/LnMobileCloud.vue",
+      "visible": true,
+      "imgSrc": "el-icon-share",
+      "imgClickSrc": "",
+      "operationId": "100001"
+    },
     {
         "menuName": "张国印",
         "templateName": "hello-world1222",
