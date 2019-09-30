@@ -80,8 +80,10 @@
   .ln-mobile-cloud{
     display: flex;
     flex-direction: column;
-    /*width:5760px;*/
-    /*height:2160px;*/
+    /*width:2880px !important;*/
+    /*height:1080px !important;*/
+    /*width:5760px !important;*/
+    /*height:2160px !important;*/
   }
   .ln-mobile-cloud-title{
     width:100%;
@@ -97,6 +99,7 @@
   }
   .ln-mobile-cloud-info{
     flex:1 1 auto;
+    position: relative;
   }
   .ln-mobile-cloud-left{
     width:32%;
