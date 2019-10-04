@@ -103,20 +103,24 @@ export default {
     border-right: 1px solid #ccc;
   }
   .el-aside-menu-open {
-    width: 200px !important;
+    /*width: 200px !important;*/
+    width: 0px !important;
   }
   .el-aside-menu-close {
     width: 51px !important;
   }
   .el-main{
-    padding:10px;
+    /*padding:10px;*/
+    padding:0px;
+    position:relative;
   }
 
   .el-footer {
     font-family: "Microsoft YaHei";
     font-size: 12px;
     font-weight: normal;
-    display: flex;
+    /*display: flex;*/
+    display: none;
     align-items: center;
     justify-content: center;
   }
