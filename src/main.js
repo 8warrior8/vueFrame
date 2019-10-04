@@ -13,6 +13,7 @@ import Echarts from 'echarts'  // 引入echarts
 import VueSimpleSVG from 'vue-simple-svg' //引入SVG组件
 
 import Mock from './mock'  //引入mock数据，关闭则注释该行
+import * as d3 from 'd3'
 Mock.bootstrap()    //引入mock数据，关闭则注释该行
 
 Vue.config.productionTip = false
@@ -21,7 +22,8 @@ Vue.prototype.$axios = Axios    //引入axios相关处理能力
 Vue.prototype.$echarts = Echarts;
 Vue.prototype.$comUtil = comUtil;
 Vue.use(ElementUI);
-Vue.use(VueSimpleSVG)
+Vue.use(VueSimpleSVG);
+Object.defineProperty(Vue.prototype, '$d3', {value: d3});
 
 
 //路由守护，确保有效路由可以执行
